@@ -1,17 +1,35 @@
+import dotenv from "dotenv";
+
 import express from "express";
 import cors from "cors";
+import productRoutes from "./routes/productRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
+
+dotenv.config();
 
 const app = express();
-const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
 
-// test route
-app.get("/api/test", (req, res) => {
-  res.json({ message: "Server is running successfully!" });
-});
+app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/cart", cartRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () =>
+  console.log(` Server running on port http://localhost:${PORT}`)
+);
+
+// check connections of Data Base
+// pool.connect((err, client, release) => {
+//   if (err) {
+//     return console.error(" Error acquiring client", err.stack);
+//   }
+//   console.log("Database connected successfully!");
+//   release();
+// });
