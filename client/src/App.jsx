@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/home.jsx";
@@ -9,7 +9,6 @@ import Wishlist from "./pages/wishlist";
 import User from "./pages/User";
 // import { useEffect, useState } from "react";
 // import axios from "axios";
-
 
 export default function App() {
   // const [message, setMessage] = useState("");
@@ -22,23 +21,21 @@ export default function App() {
   // }, []);
   return (
     <>
-    <h1>Hello</h1>
-    {/* <h2>{message}</h2> */}
-    <BrowserRouter>
-     <Router>
-      <Header />
-      <Navbar />
-      
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/user" element={<User />} />
-      </Routes>
-    </Router>
-    </BrowserRouter>
+      {/* <h1>Hello</h1> */}
+      {/* <h2>{message}</h2> */}
+      <BrowserRouter>
+        <Header />
+        <Navbar />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/user" element={<User />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
