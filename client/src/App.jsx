@@ -6,7 +6,9 @@ import ProductList from "./pages/productList.jsx";
 import About from "./pages/about";
 import Cart from "./pages/cart";
 import Wishlist from "./pages/wishlist";
-import User from "./pages/User";
+import "./App.css";
+
+// import User from "./pages/User";
 // import { useEffect, useState } from "react";
 // import axios from "axios";
 
@@ -33,7 +35,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/user" element={<User />} />
+          {/* <Route path="/user" element={<User />} /> */}
         </Routes>
       </BrowserRouter>
     </>
