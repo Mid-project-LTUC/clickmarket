@@ -1,0 +1,59 @@
+/* MAIN NAVBAR */
+.navbar {
+  width: 100%;
+  background-color: #e63946; /* red accent like Xtra Supermarket */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 14px 0;
+  position: sticky;
+  top: 70px; /* below header height */
+  z-index: 999;
+}
+
+/* NAV LINKS */
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* HOVER EFFECT (underline grow) */
+.navbar a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+.navbar a:hover {
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 10px 0;
+  }
+
+  .navbar a {
+    font-size: 15px;
+  }
+}
