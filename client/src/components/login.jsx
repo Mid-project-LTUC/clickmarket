@@ -1,36 +1,45 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
-export default function Login({onLoginSuccess}){
-
-  const [formData, setFormData] = useState({ email: "", password: "" });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+export default function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-      credentials: "include",
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      onLoginSuccess(data.user); //updates parent User component
-    } else {
-      alert("Login failed");
+    try {
+      const res = await axios.post("http://localhost:5000/api/users/login", {
+        email,
+        password,
+      });
+      localStorage.setItem("token", res.data.token);
+      setMessage("Login successful! Reloading...");
+      setTimeout(() => window.location.reload(), 1000);
+    } catch (err) {
+      setMessage(err.response?.data?.error || "Login failed");
     }
   };
-  
-  return(
-     <form onSubmit={handleSubmit} className="login-form">
-        <h3>LogIn</h3>
-        <input name="email" type="email" placeholder="Email" onChange={handleChange} />
-        <input name="password" type="password" placeholder="Password" onChange={handleChange} />
-        <button type="submit">Login</button>
-      </form>
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <button type="submit">Login</button>
+      <p>{message}</p>
+    </form>
   );
 }

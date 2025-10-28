@@ -1,79 +1,52 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-export default function SignUp({onSignupSuccess}){
-  const [formData, setFormData] = useState({firstName: "",lastName: "",email: "",password: "",address: "",});
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+export default function SignupForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const res = await fetch("/api/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-        credentials: "include", // keep session cookies if used
+      await axios.post("http://localhost:5000/api/users/signup", {
+        name,
+        email,
+        password,
       });
-
-      if (res.ok) {
-        const data = await res.json();
-        onSignupSuccess(data.user); // 👈 update parent User component
-      } else {
-        const errorData = await res.json();
-        alert(errorData.message || "Signup failed");
-      }
-    }
-    catch (err) {
-      console.error("Error signing up:", err);
-      alert("Something went wrong. Please try again.");
+      setMessage("Signup successful! You can now log in.");
+    } catch (err) {
+      setMessage(err.response?.data?.error || "Signup failed");
     }
   };
 
   return (
-     <form className="signup-form" onSubmit={handleSubmit}>
-        <h3>Sign Up</h3>
-        <input
-        type="text"
-        name="firstName"
-        placeholder="First name"
-        value={formData.firstName}
-        onChange={handleChange}
-        required
-      />
+    <form onSubmit={handleSubmit}>
+      <h2>Sign Up</h2>
       <input
         type="text"
-        name="lastName"
-        placeholder="Last name"
-        value={formData.lastName}
-        onChange={handleChange}
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
         required
       />
       <input
         type="email"
-        name="email"
         placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         required
       />
       <input
         type="password"
-        name="password"
         placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <input
-        type="text"
-        name="address"
-        placeholder="Address"
-        value={formData.address}
-        onChange={handleChange}
-      />
-      <button type="submit">Submit</button>
-      </form>
+      <button type="submit">Sign Up</button>
+      <p>{message}</p>
+    </form>
   );
 }

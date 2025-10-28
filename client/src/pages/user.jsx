@@ -1,71 +1,40 @@
-import React, { useState, useEffect } from "react";
-import Login from "./Login";
-import Signup from "./Signup";
+import React, { useEffect, useState } from "react";
+import SignupForm from "../components/signUp";
+import LoginForm from "../components/login";
+import UserInfo from "../components/userInfo";
 
-function User() {
-  const [user, setUser] = useState(null); // null = logged out
-  const [view, setView] = useState("login"); // toggle between login/signup
+export default function User() {
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [showSignup, setShowSignup] = useState(false);
 
-  // Fetch user info on load (check if logged in)
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await fetch("/api/user", { credentials: "include" });
-        if (res.ok) {
-          const data = await res.json();
-          setUser(data); // example { name, email, ... }
-        }
-      } catch (err) {
-        console.error("Error fetching user:", err);
-      }
-    };
-    fetchUser();
+    setToken(localStorage.getItem("token"));
   }, []);
 
-  //  Logout handler
-  const handleLogout = async () => {
-    await fetch("/api/logout", { method: "POST", credentials: "include" });
-    setUser(null);
-  };
+  if (!token) {
+    return (
+      <div className="auth-container">
+        {showSignup ? (
+          <>
+            <SignupForm />
+            <p>
+              Already have an account?{" "}
+              <button onClick={() => setShowSignup(false)}>Login</button>
+            </p>
+          </>
+        ) : (
+          <>
+            <LoginForm />
+            <p>
+              Don’t have an account?{" "}
+              <button onClick={() => setShowSignup(true)}>Sign up</button>
+            </p>
+          </>
+        )}
+      </div>
+    );
+  }
 
-  return (
-    <section className="user">
-      <h2>User Profile</h2>
-
-      {/* Show login/signup if user is not logged in */}
-      {!user ? (
-        <div className="auth-section">
-          <div className="auth-toggle">
-            <button
-              onClick={() => setView("login")}
-              className={view === "login" ? "active" : ""}
-            >
-              Login
-            </button>
-            <button
-              onClick={() => setView("signup")}
-              className={view === "signup" ? "active" : ""}
-            >
-              Sign Up
-            </button>
-          </div>
-
-          {view === "login" ? (
-            <Login onLoginSuccess={setUser} />
-          ) : (
-            <SignUp onSignupSuccess={setUser} />
-          )}
-        </div>
-      ) : (
-        // Show user info when logged in
-        <div className="user-info">
-          <p><strong>Name:</strong> {user.name}</p>
-          <p><strong>Email:</strong> {user.email}</p>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      )}
-    </section>
-  );
+  // If token exists, show user info
+  return <UserInfo token={token} />;
 }
-
-export default User;
