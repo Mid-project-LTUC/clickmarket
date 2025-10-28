@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-/* ========================================
-   Elegant Header Design with Glass Effect
-   ======================================== */
-
-header {
-    background-color: #1c3e56;
-    padding: 10px;
-    margin-top: -45px;
-    margin-bottom: -40px;
-    border-radius: 100px;
-}
 
 /* ===== CONTAINER ===== */
 .navbar-container {
@@ -419,4 +407,4 @@ header {
     font-size: 15px;
   }
 }
->>>>>>> c426fc4ab79fb6a497348947dc9e7ff577a45cb8
+
