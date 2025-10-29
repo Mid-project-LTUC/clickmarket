@@ -1,0 +1,448 @@
+/* ===== Profile Page ===== */
+.profile-container {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: linear-gradient(120deg, #8ecdf2, #d3d3d3); */
+  background-color: #f6efd2;
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite alternate;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.profile-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  width: 380px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-banner {
+  height: 100px;
+  width: 100%;
+  background: linear-gradient(90deg, #e63946, #8ecdf2);
+  border-radius: 15px 15px 0 0;
+}
+
+/* ===== Avatar Section ===== */
+.profile-avatar {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #fff;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-avatar:hover {
+  transform: translateX(-50%) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== Avatar Overlay (Edit/Remove) ===== */
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-avatar:hover .avatar-overlay {
+  opacity: 1;
+}
+
+.overlay-btn {
+  background: linear-gradient(135deg, #8ecdf2, #007bff);
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 80%;
+  text-align: center;
+}
+
+.overlay-btn:hover {
+  background: linear-gradient(135deg, #007bff, #8ecdf2);
+  transform: translateY(-2px);
+}
+
+.overlay-btn.remove {
+  background: linear-gradient(135deg, #e63946, #ff6961);
+}
+
+.overlay-btn.remove:hover {
+  background: linear-gradient(135deg, #c12c36, #ff5a5a);
+}
+
+/* ===== Profile Info ===== */
+.profile-name {
+  margin-top: 70px;
+  font-size: 22px;
+  color: #000;
+  font-weight: 700;
+}
+
+.profile-email {
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.profile-info {
+  display: flex;
+  justify-content: space-around;
+  color: #000;
+  margin-bottom: 25px;
+}
+
+.info-box {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 15px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-box:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* ===== Logout Button ===== */
+.logout-btn {
+  position: relative;
+  background: linear-gradient(to right, #e63946, #ff6961);
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  overflow: hidden;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+}
+
+.logout-btn:hover {
+  transform: translateY(-3px);
+}
+
+.logout-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+.logout-btn .wave {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-20deg);
+  animation: waveMove 3s infinite linear;
+}
+
+@keyframes waveMove {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ===== Form Page ===== */
+.user-page {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f3f3f3, #8ecdf2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-card {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 40px;
+  border-radius: 20px;
+  width: 400px;
+  text-align: center;
+  color: #000;
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 1s ease;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+}
+
+.user-header h1 {
+  margin-bottom: 10px;
+  font-size: 26px;
+  color: #000;
+}
+
+.user-header p {
+  color: #444;
+}
+
+.input-group {
+  position: relative;
+  margin: 20px 0;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 2px solid #8ecdf2;
+  color: #000;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #e63946;
+}
+
+.input-group label {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  color: #777;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  font-size: 12px;
+  color: #e63946;
+}
+
+.btn-submit {
+  width: 100%;
+  background: linear-gradient(to right, #e63946, #8ecdf2);
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.btn-submit:hover {
+  background: linear-gradient(to right, #8ecdf2, #e63946);
+}
+
+.divider {
+  margin: 20px 0;
+  color: #666;
+  font-weight: 600;
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.social-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.google {
+  background: #f3f3f3;
+  color: #000;
+}
+
+.facebook {
+  background: #1877f2;
+  color: #fff;
+}
+
+.social-btn:hover {
+  transform: scale(1.05);
+}
+
+.toggle-text {
+  margin-top: 20px;
+  cursor: pointer;
+  color: #e63946;
+  transition: 0.3s;
+}
+
+.toggle-text:hover {
+  color: #000;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 480px) {
+  .profile-card,
+  .user-card {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .profile-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .overlay-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+/* === Avatar Edit Options === */
+.profile-avatar {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  transition: 0.3s;
+}
+
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s ease;
+  z-index: 2;
+}
+
+.profile-avatar:hover .avatar-overlay {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.avatar-overlay i {
+  color: #fff;
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.avatar-options {
+  position: absolute;
+  top: 115%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  display: none;
+  flex-direction: column;
+  width: 140px;
+  z-index: 3;
+}
+
+.profile-avatar:hover .avatar-options {
+  display: flex;
+}
+
+.avatar-options button {
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.avatar-options button:hover {
+  background: #f4f4f4;
+  color: #e63946;
+}
