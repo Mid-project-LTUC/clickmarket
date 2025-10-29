@@ -1,0 +1,45 @@
+.about-section {
+  max-width: 900px;
+  margin: 3rem auto;
+  background: linear-gradient(135deg, #fffaf5 0%, #f8fffa 100%);
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-left: 8px solid #e63946; /* your brand red */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
+}
+
+.about-section h2 {
+  font-family: "Playfair Display", serif;
+  color: #1d3557;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #e63946;
+  display: inline-block;
+  padding-bottom: 0.4rem;
+}
+
+.about-section p {
+  font-family: "Inter", sans-serif;
+  color: #333;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  text-align: justify;
+  margin-top: 1rem;
+}
+
+.about-section p::first-letter {
+  font-size: 2.2rem;
+  color: #e63946;
+  font-weight: bold;
+  float: left;
+  margin-right: 6px;
+  line-height: 1;
+}
+
+
