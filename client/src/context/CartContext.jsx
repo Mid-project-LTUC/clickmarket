@@ -1,16 +1,19 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
 
   const addToCart = (product) => {
-    setCart((prev) => {
-      const existing = prev.find((p) => p._id === product._id);
-      if (existing) {
-        return prev.map((p) =>
-          p._id === product._id ? { ...p, quantity: p.quantity + 1 } : p
+    setCartItems((prev) => {
+      const exist = prev.find((item) => item.id === product.id);
+      if (exist) {
+        return prev.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         );
       } else {
         return [...prev, { ...product, quantity: 1 }];
@@ -18,17 +21,27 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((p) => p._id !== id));
+  const removeFromCart = (productId) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== productId));
   };
 
-  const updateQuantity = (id, quantity) => {
-    setCart((prev) => prev.map((p) => (p._id === id ? { ...p, quantity } : p)));
+  const toggleWishlist = (product) => {
+    setWishlistItems((prev) => {
+      const exists = prev.find((item) => item.id === product.id);
+      if (exists) return prev.filter((item) => item.id !== product.id);
+      else return [...prev, product];
+    });
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, updateQuantity }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        wishlistItems,
+        toggleWishlist,
+      }}
     >
       {children}
     </CartContext.Provider>
