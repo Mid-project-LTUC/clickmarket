@@ -3,10 +3,10 @@ import { useEffect } from "react";
 
 export default function Categories() {
   const categories = [
-    { id: 1, name: "Fruits & Vegetables", image: "../../public/fruits.png" },
-    { id: 2, name: "Dairy & Eggs", image: "../../public/fruits.png" },
-    { id: 3, name: "Bakery", image: "../../public/fruits.png" },
-    { id: 4, name: "Snacks & Beverages", image: "../../public/fruits.png" },
+    { id: 1, name: "Fruits & Vegetables", image: "../../public/Fresh-Fruits-and-Vegetables_28.jpg" },
+    { id: 2, name: "Dairy & Eggs", image: "../../public/dairy-background.jpg" },
+    { id: 3, name: "Bakery", image: "../../public/Bakery.webp" },
+    { id: 4, name: "Snacks & Beverages", image: "../../public/snacks.webp" },
   ];
   useEffect(() => {
     const cards = document.querySelectorAll(".category-card");

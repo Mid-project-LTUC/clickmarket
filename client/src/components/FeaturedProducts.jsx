@@ -7,25 +7,25 @@ export default function FeaturedProducts() {
       id: 1,
       name: "Organic Apples",
       price: "JOD 4.99",
-      image: "../../public/fruits.png",
+      image: "../../public/apple.webp",
     },
     {
       id: 2,
       name: "Fresh Milk",
       price: " JOD 2.49",
-      image: "../../public/fruits.png",
+      image: "../../public/milk.webp",
     },
     {
       id: 3,
       name: "Chocolate Croissant",
       price: "JOD 1.99",
-      image: "../../public/fruits.png",
+      image: "../../public/chocolate.webp",
     },
     {
       id: 4,
       name: "Orange Juice",
       price: "JOD 3.50",
-      image: "../../public/fruits.png",
+      image: "../../public/orange juice.jpg",
     },
   ];
   useEffect(() => {

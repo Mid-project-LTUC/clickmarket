@@ -14,7 +14,7 @@ export default function Promotions() {
       id: 2,
       title: "Bakery Special Offer",
       description: "Buy 2 pastries and get 1 free today only!",
-      image: "../../public/fruits.png",
+      image: "../../public/Bakery.webp",
       endDate: "2025-11-05T23:59:59",
     },
   ];
