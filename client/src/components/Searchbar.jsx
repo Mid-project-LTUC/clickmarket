@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // import navigate
+import { useNavigate } from "react-router-dom";
 import "./SearchBar.css";
 
 export default function SearchBar() {
@@ -27,15 +27,18 @@ export default function SearchBar() {
   useEffect(() => {
     if (!Array.isArray(products)) return;
 
-    const filtered = products.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const term = searchTerm.trim().toLowerCase();
+    const filtered = products.filter(
+      (product) => product.name && product.name.toLowerCase().includes(term)
     );
     setFilteredProducts(filtered);
   }, [searchTerm, products]);
 
-  // Navigate to product page on click
+  // Navigate to Product page
   const handleProductClick = (product) => {
     navigate(`/product/${product.id}`);
+    setSearchTerm(""); // Clear search after click
+    setFilteredProducts([]);
   };
 
   return (

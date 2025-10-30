@@ -10,8 +10,8 @@ import User from "./pages/user.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Auth from "./pages/Auth.jsx";
-import ProductPage from "./pages/ProductPage.jsx"; // ✅ import the new product page
-
+import ProductPage from "./pages/ProductPage.jsx";
+import CategoryPage from "./pages/CategoryPage.jsx";
 import "./App.css";
 
 export default function App() {
@@ -30,8 +30,8 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/auth" element={<Auth />} />
-
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/category/:categoryName" element={<CategoryPage />} />{" "}
       </Routes>
     </BrowserRouter>
   );

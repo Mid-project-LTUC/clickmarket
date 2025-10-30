@@ -1,19 +1,20 @@
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
-import "./ProductPage.css";
+import { CartContext } from "../context/CartContext.jsx";
 
 export default function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const { cartItems, addToCart, wishlistItems, toggleWishlist } =
+    useContext(CartContext);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(`http://localhost:5000/api/products/${id}`);
-        setProduct(res.data); // API returns the object directly
+        // Ensure the product object has an id field
+        setProduct(res.data);
       } catch (err) {
         console.error(err);
       }
@@ -23,37 +24,62 @@ export default function ProductPage() {
 
   if (!product) return <p>Loading...</p>;
 
+  const isInCart = cartItems.some((item) => item.id === product.id);
+  const isInWishlist = wishlistItems.some((item) => item.id === product.id);
+
+  // Wrap addToCart and toggleWishlist to pass the correct product object
   const handleAddToCart = () => {
-    alert(`Added ${product.name} to cart`);
+    addToCart({ ...product });
   };
 
-  const handleAddToWishlist = () => {
-    alert(`Added ${product.name} to wishlist`);
+  const handleToggleWishlist = () => {
+    toggleWishlist({ ...product });
   };
 
   return (
-    <div className="product-page">
-      <div className="product-container">
-        <div className="product-image">
-          <img src={product.image_url} alt={product.name} />
+    <div style={{ padding: "20px", maxWidth: "400px", margin: "0 auto" }}>
+      <div style={{ position: "relative" }}>
+        <div
+          onClick={handleToggleWishlist}
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            fontSize: "1.5rem",
+            color: isInWishlist ? "#e74c3c" : "#ccc",
+            cursor: "pointer",
+          }}
+        >
+          ♥
         </div>
-        <div className="product-details">
-          <h1>{product.name}</h1>
-          <p className="product-price">${product.price}</p>
-          <p className="product-description">
-            {product.description || "No description available."}
-          </p>
-
-          <div className="product-actions">
-            <button className="btn-cart" onClick={handleAddToCart}>
-              <FontAwesomeIcon icon={faCartShopping} /> Add to Cart
-            </button>
-            <button className="btn-wishlist" onClick={handleAddToWishlist}>
-              <FontAwesomeIcon icon={faHeart} /> Wishlist
-            </button>
-          </div>
-        </div>
+        <img
+          src={product.image_url}
+          alt={product.name}
+          style={{
+            width: "100%",
+            height: "300px",
+            objectFit: "cover",
+            borderRadius: "12px",
+          }}
+        />
       </div>
+      <h2>{product.name}</h2>
+      <p style={{ fontWeight: "700", color: "#27ae60" }}>{product.price} JD</p>
+      <button
+        onClick={handleAddToCart}
+        style={{
+          marginTop: "10px",
+          width: "100%",
+          padding: "10px",
+          backgroundColor: isInCart ? "#219150" : "#27ae60",
+          color: "#fff",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+        }}
+      >
+        {isInCart ? "Added!" : "Add to Cart"}
+      </button>
     </div>
   );
 }
