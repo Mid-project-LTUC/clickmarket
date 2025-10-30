@@ -5,10 +5,10 @@
 }
 
 .categories-title {
-  font-size: 3rem;
+  font-size: 28px;
   font-weight: 900;
   text-align: center;
-  color: #27ae60;
+  color: black;
   margin-bottom: 60px;
   letter-spacing: 1px;
 }
@@ -79,35 +79,42 @@
 /* Staggered card sizes */
 .category-card.card-0 {
   grid-column: span 2;
-  grid-row: span 2;
-} /* left big card */
+  grid-row: span 2; /* left big card */
+}
+
 .category-card.card-1 {
   grid-column: span 1;
-  grid-row: span 1;
+  grid-row: span 2; /* right big card same height as left */
 }
+
 .category-card.card-2 {
   grid-column: span 1;
   grid-row: span 2;
 }
+
 .category-card.card-3 {
   grid-column: span 2;
   grid-row: span 1;
 }
+
 .category-card.card-4 {
   grid-column: span 1;
   grid-row: span 1;
 }
+
 .category-card.card-5 {
   grid-column: span 1;
   grid-row: span 1;
 }
+
 .category-card.card-6 {
   grid-column: span 2;
   grid-row: span 2;
 }
+
 .category-card.card-7 {
-  grid-column: span 1;
-  grid-row: span 1;
+  grid-column: span 2; /* wide like left big cards */
+  grid-row: span 2; /* same height as left big cards */
 }
 
 /* Responsive adjustments */
