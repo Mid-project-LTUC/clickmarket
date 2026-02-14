@@ -6,38 +6,33 @@ import ProductList from "./pages/productList.jsx";
 import About from "./pages/about";
 import Cart from "./pages/cart";
 import Wishlist from "./pages/wishlist";
+import User from "./pages/user.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Auth from "./pages/Auth.jsx";
+import ProductPage from "./pages/ProductPage.jsx";
+import CategoryPage from "./pages/CategoryPage.jsx";
 import "./App.css";
 
-// import User from "./pages/User";
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-
 export default function App() {
-  // const [message, setMessage] = useState("");
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:5000/api/test")
-  //     .then((res) => setMessage(res.data.message))
-  //     .catch((err) => console.error(err));
-  // }, []);
   return (
-    <>
-      {/* <h1>Hello</h1> */}
-      {/* <h2>{message}</h2> */}
-      <BrowserRouter>
-        <Header />
-        <Navbar />
+    <BrowserRouter>
+      <Header />
+      <Navbar />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          {/* <Route path="/user" element={<User />} /> */}
-        </Routes>
-      </BrowserRouter>
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/user" element={<User />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/category/:categoryName" element={<CategoryPage />} />{" "}
+      </Routes>
+    </BrowserRouter>
   );
 }

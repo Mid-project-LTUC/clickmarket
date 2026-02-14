@@ -7,13 +7,21 @@ import Testimonials from "../components/Testimonials";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 export default function Home() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const heroText = document.querySelector(".hero-text");
     setTimeout(() => {
       heroText.classList.add("show");
     }, 200); // delay for smooth effect
   }, []);
+
+  const handleStartShopping = () => {
+    navigate("/products"); // Redirect to product list page
+  };
 
   return (
     <>
@@ -25,12 +33,13 @@ export default function Home() {
             supermarket. Shop anytime, anywhere, and enjoy fresh groceries
             delivered straight to your door.
           </p>
-          <button>Start Shopping</button>
+          <button onClick={handleStartShopping}>Start Shopping</button>
         </div>
         <div className="hero-image">
           <div className="overlay"></div>
         </div>
       </section>
+
       <Features />
       <Categories />
       <Promotions />

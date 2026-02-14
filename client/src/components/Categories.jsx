@@ -1,37 +1,63 @@
 import "./Categories.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Categories() {
-  const categories = [
-    { id: 1, name: "Fruits & Vegetables", image: "../../public/Fresh-Fruits-and-Vegetables_28.jpg" },
-    { id: 2, name: "Dairy & Eggs", image: "../../public/dairy-background.jpg" },
-    { id: 3, name: "Bakery", image: "../../public/Bakery.webp" },
-    { id: 4, name: "Snacks & Beverages", image: "../../public/snacks.webp" },
-  ];
+  const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const cards = document.querySelectorAll(".category-card");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/products");
+        const products = Array.isArray(res.data) ? res.data : [];
+
+        // Extract unique categories with first product image
+        const uniqueCategoriesMap = new Map();
+        products.forEach((p) => {
+          if (!uniqueCategoriesMap.has(p.category)) {
+            uniqueCategoriesMap.set(p.category, p.image_url);
           }
         });
-      },
-      { threshold: 0.3 }
-    );
-    cards.forEach((card) => observer.observe(card));
+
+        const categoriesArray = Array.from(
+          uniqueCategoriesMap,
+          ([name, image], idx) => ({
+            id: idx,
+            name,
+            image: image || "https://via.placeholder.com/300x300",
+          })
+        );
+
+        setCategories(categoriesArray);
+      } catch (err) {
+        console.error("Failed to fetch categories", err);
+      }
+    };
+
+    fetchCategories();
   }, []);
+
+  const handleCategoryClick = (categoryName) => {
+    navigate(`/category/${encodeURIComponent(categoryName)}`);
+  };
+
   return (
-    <section className="categories">
-      <h2>Shop by Category</h2>
-      <div className="category-list">
-        {categories.map((cat) => (
-          <div key={cat.id} className="category-card">
-            <div className="category-image">
-              <img src={cat.image} alt={cat.name} />
+    <section className="categories-section">
+      <h2 className="categories-title">Shop by Category</h2>
+      <div className="categories-grid">
+        {categories.map((cat, idx) => (
+          <div
+            key={cat.id}
+            className={`category-card card-${idx}`}
+            onClick={() => handleCategoryClick(cat.name)}
+          >
+            <img src={cat.image} alt={cat.name} />
+            <div className="category-overlay">
+              <h3>{cat.name}</h3>
+              <p>Shop Now</p>
             </div>
-            <h3>{cat.name}</h3>
           </div>
         ))}
       </div>

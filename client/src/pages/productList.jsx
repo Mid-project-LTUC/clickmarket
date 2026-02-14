@@ -48,17 +48,6 @@ export default function ProductList() {
           minHeight: "100vh",
         }}
       >
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "2rem",
-            marginBottom: "40px",
-            color: "#222",
-          }}
-        >
-          Our Products
-        </h2>
-
         <div
           style={{
             display: "grid",

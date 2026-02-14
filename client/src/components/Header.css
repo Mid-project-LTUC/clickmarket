@@ -1,251 +1,3 @@
-
-
-header {
-    background-color: #1c3e56;
-    padding: 10px;
-    margin-top: -45px;
-    margin-bottom: -40px;
-    border-radius: 100px;
-}
-
-/* ===== CONTAINER ===== */
-.navbar-container {
-  display:-webkit-flex;
-  align-items:inherit; 
-  justify-content:space-between;
-  padding: 20px 90px;
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-/* ===== LOGO ===== */
-.logo {
-  font-size:1.9em;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform:initial;
-  background:-webkit-linear-gradient(90deg, #ffb100, #ffdd75);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  cursor:progress;
-  transition: transform 0.7s ease;
-}
-
-.logo:hover {
-  transform: scale(1.08);
-}
-
-/* ===== NAV LINKS ===== */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 500;
-  font-size: 1rem;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.nav-links a::before {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -6px;
-  left: 0;
-  background: #ffb100;
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #ffb100;
-}
-
-.nav-links a:hover::before {
-  width: 100%;
-}
-
-/* ===== SEARCH BAR ===== */
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(0, 0, 0, 0.411);
-  border-radius: 40px;
-  padding: 6px 15px;
-  width: 300px;
-  transition: all 0.3s ease;
-}
-
-.search-bar:hover {
-  background: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 0 10px rgba(255, 177, 0, 0.3);
-}
-
-.search-bar input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: #d36d0d;
-  padding: 8px;
-  font-size: 0.95rem;
-}
-
-.search-bar input::placeholder {
-  color: rgba(182, 140, 25, 0.6);
-}
-
-.search-bar button {
-  background: #ffb100;
-  border: none;
-  border-radius: 50%;
-  color: #1e1e2f;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s ease;
-}
-
-.search-bar button:hover {
-  background: #ffd65a;
-  transform: rotate(10deg);
-}
-
-/* ===== ICONS ===== */
-.icons {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.icon-btn {
-  background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.3s ease;
-}
-
-.icon-btn:hover {
-  color: #ffb100;
-  transform: scale(1.2);
-}
-
-/* ===== EFFECT WHEN SCROLL ===== */
-header.scrolled {
-  background: rgba(10, 10, 25, 0.9);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* ===== DESKTOP ONLY ===== */
-@media (max-width: 1024px) {
-  header {
-    display: none;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.navbar a:hover {
-  color: var(--accent);
-}
-
-
-.header-top h1:hover {
-  color: var(--accent);
-  transform: scale(1.05);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.icons a:hover {
-  color: var(--accent);
-  transform: scale(1.25) rotate(5deg);
-  transition: all 0.3s ease;
-}
-
-.navbar a:hover {
-  color: var(--accent);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px;
-  transition: all 0.25s ease;
-}
-
-header {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-}
-
-
-
-
-
-
-
-header {
-  animation: slideDown 0.8s ease-out;
-}
-
-.header-top h1,
-.searchbar,
-.icons,
-.navbar {
-  opacity: 0;
-  animation: fadeIn 1s ease forwards;
-}
-
-.header-top h1 { animation-delay: 0.2s; }
-.searchbar { animation-delay: 0.4s; }
-.icons { animation-delay: 0.6s; }
-.navbar { animation-delay: 0.8s; }
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-80px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* HEADER WRAPPER */
 header {
   width: 100%;
@@ -416,4 +168,29 @@ header {
     font-size: 15px;
   }
 }
+.user-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+}
 
+.modal-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: relative;
+  width: 400px;
+  max-width: 90%;
+  margin: 100px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 2100;
+}
